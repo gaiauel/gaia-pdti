@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 
 define('INSTITUICAO_ID', 1);
 
-require 'lib/MPDF57/mpdf.php';
+#require 'lib/MPDF57/mpdf.php';
 require 'database.php';
 
 /*$db = new DB();
@@ -25,12 +25,12 @@ $app->get('/update', function () use ($app) {
 	$db->update_attributes(INSTITUICAO_ID, $app->request->get());
 });
 
-$app->get('/pdf', function () use ($app) {
+/*$app->get('/pdf', function () use ($app) {
 	$app->response->headers->set('Content-Type', 'application/pdf');
 	$mpdf = new mPDF();
 	$mpdf->WriteHTML('Hello World');
 	$mpdf->Output();
-});
+});*/
 
 $app->get('/hello/:name', function ($name) {
     echo "Hello, $name";
