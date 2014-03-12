@@ -14,7 +14,7 @@ function link_to($url) {
 
 function resource($url) {
 	if (is_production()) {
-		return $url;
+		return "/" . $url;
 	} else {
 		return "http://localhost/slim_tests/2/" . $url;
 	}
