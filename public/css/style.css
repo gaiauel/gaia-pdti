@@ -91,3 +91,13 @@ body {
 .placeholder img {
   border-radius: 50%;
 }
+
+.nav-sidebar > .active > a:hover {
+  color: black;
+  background-color: #428bca !important;
+}
+
+
+.formFieldLabel {
+  font-weight: bold;
+}

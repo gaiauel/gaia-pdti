@@ -11,13 +11,13 @@
 
 </div><!-- container-fluid -->
 
-    <script src="public/js/jquery.min.js"></script>
-    <script src="public/js/bootstrap.min.js"></script>
-    <script src="public/js/wysihtml5-0.3.0.js"></script>
+    <script src="<?= resource('public/js/jquery.min.js'); ?>"></script>
+    <script src="<?= resource('public/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?= resource('public/js/wysihtml5-0.3.0.js'); ?>"></script>
     <script src="http://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/prettify.js"></script>
-    <script src="public/js/bootstrap-wysihtml5.js"></script>
-    <script src="public/js/bootstrap3-wysihtml5.js"></script>
-    <script src="public/js/notify.min.js"></script>
-    <script src="public/js/script.js"></script>
+    <script src="<?= resource('public/js/bootstrap-wysihtml5.js'); ?>"></script>
+    <script src="<?= resource('public/js/bootstrap3-wysihtml5.js'); ?>"></script>
+    <script src="<?= resource('public/js/notify.min.js'); ?>"></script>
+    <script src="<?= resource('public/js/script.js'); ?>"></script>
   </body>
 </html>
