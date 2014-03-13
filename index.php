@@ -21,10 +21,7 @@ $app->get('/', function () use ($app) {
 	$app->render('home.php', array('rows' => $db->loadInfos(INSTITUICAO_ID)));
 });
 
-$app->get('/missao', function () use ($app) {
-	$db = new DB();
-	$app->render('missao.php', array('rows' => $db->loadInfos(INSTITUICAO_ID)));
-});
+
 
 $app->get('/update', function () use ($app) {
 	$db = new DB();
@@ -33,6 +30,13 @@ $app->get('/update', function () use ($app) {
 
 $app->get('/options', function() use ($app) {
 	$app->render('options.php');
+});
+
+$app->get('/:page', function ($page) use ($app) {
+	$db = new DB();
+	if (in_array($page, array('missao', 'visao'))) {
+		$app->render("$page.php", array('rows' => $db->loadInfos(INSTITUICAO_ID)));
+	}
 });
 
 $app->get('/hello/:name', function ($name) {

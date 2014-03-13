@@ -44,8 +44,8 @@
 
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="<?= link_to('missao'); ?>">Missão</a></li>
-            <li><a href="#">Visão</a></li>
+            <li><a href="<?= link_to('missao'); ?>">Missão</a></li>
+            <li><a href="<?= link_to('visao'); ?>">Visão</a></li>
           </ul>
           <hr>
           <a href="test_pdf.php">

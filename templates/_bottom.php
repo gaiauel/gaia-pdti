@@ -3,13 +3,17 @@
 	<div class="row">
 		<div class="col-md-8"></div>
 		<div class="col-md-4">
-			<button type="button" class="btn btn-success btn-lg" id="save_content" data-attr="missao">
+			<button type="button" class="btn btn-success btn-lg" id="save_content">
 				<span class="glyphicon glyphicon-floppy-disk"></span> <span class="button_text">Salvar documento</span>
 			</button>
 		</div>
 	</div>
 
 </div><!-- container-fluid -->
+
+    <script>
+        var base_url = "<?= link_to(''); ?>";
+    </script>
 
     <script src="<?= resource('public/js/jquery.min.js'); ?>"></script>
     <script src="<?= resource('public/js/bootstrap.min.js'); ?>"></script>
