@@ -46,6 +46,8 @@
           <ul class="nav nav-sidebar">
             <li><a href="<?= link_to('missao'); ?>">Missão</a></li>
             <li><a href="<?= link_to('visao'); ?>">Visão</a></li>
+            <li><a href="<?= link_to('objetivos'); ?>">Objetivos Estratégicos</a></li>
+            <li><a href="<?= link_to('matriz'); ?>">Matriz SWOT</a></li>
           </ul>
           <hr>
           <a href="test_pdf.php">

@@ -27,8 +27,33 @@
 // Include the main TCPDF library (search for installation path).
 require_once('lib/tcpdf/tcpdf.php');
 
+require_once 'database.php';
+
+//customizing the footer/header
+class MYPDF extends TCPDF {
+	//Page header
+    public function Header() {
+        // Logo
+        $image_file = 'relatorio/logo.jpg';
+        $this->Image($image_file, 10, 10, 50, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        // Set font
+        $this->SetFont('helvetica', 'B', 20);
+        // Title
+        //$this->Cell(0, 15, '<< TCPDF Example 003 >>', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+    }
+    public function Footer() {
+        // Position at 15 mm from bottom
+        $this->SetY(-15);
+        // Set font
+        $this->SetFont('helvetica', 'I', 8);
+        // Page number
+        //$this->Cell(0, 10, $this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'R', 0, '', 0, false, 'T', 'M');
+        $this->Cell(0, 10, $this->getAliasNumPage(), 0, false, 'R', 0, '', 0, false, 'T', 'M');
+    }
+}
+
 // create new PDF document
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
@@ -39,13 +64,14 @@ $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
 // remove default header/footer
 $pdf->setPrintHeader(false);
-$pdf->setPrintFooter(false);
+//$pdf->setPrintFooter(false);
 
 // set default monospaced font
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+//$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetMargins(20, PDF_MARGIN_TOP, 20);
 
 // set auto page breaks
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
@@ -63,7 +89,7 @@ if (@file_exists(dirname(__FILE__).'/lib/tcpdf/lang/eng.php')) {
 
 // set font
 // $pdf->SetFont('times', 'BI', 20);
-$pdf->SetFont('dejavusans', '', 20);
+$pdf->SetFont('dejavusans', '', 16);
 
 // add a page
 $pdf->AddPage();
@@ -112,7 +138,7 @@ $html = <<<EOD
 			<td width="35%"></td>
 			<td width="65%">
 				<div style="text-align: left; font-size: 14pt; font-weight: bold;">
-					<u>Equipe Administrativa:</u>
+					<u>Equipe Administrativa:</u><br/>
 					Graça Maria Simões Luz – Diretora Presidente<br />
 					Mário Luís Orsi – Diretor Vice-Presidente<br />
 					Rita de Cássia Rocha – Gerente Executiva<br />
@@ -141,17 +167,53 @@ $pdf->lastPage();
 
 
 
+// RELATÓRIO
+
+$db = new DB;
+$infos = $db->loadInfos(1);
+
+$pdf->setPrintHeader(true);
+
 //---------------------------
 
 // add a page
 $pdf->AddPage();
 
 // set some text to print
-$html = <<<EOD
-<div style="text-align: center;">
-	ma oeee
+$html = '
+<div style="text-align: justify;">
+	<h3>2 Referencial Estratégico de TI</h3>
+	<h3>2.1 Missão</h3>
+	' . $infos['missao'] . '
+	<br/>
+	<h3>2.2 Visão</h3>
+	' . $infos['visao'] . '
+	<br/>
+	<h3>2.3 Objetivos Estratégicos de TIC</h3>
+	' . $infos['objetivos'] . '
+	<br/>
+	<h3>2.4 Matriz SWOT da área de TIC</h3>
+		<table border="1" style="border: 2px solid black;" cellpadding="2" cellspacing="2">
+			<tr style="background-color: #ccc; font-weight: bold;">
+				<td>Pontos Fortes</td>
+				<td>Pontos Fracos</td>
+			</tr>
+			<tr>
+				<td>' . $infos['swot_pforte'] . '</td>
+				<td>' . $infos['swot_pfraco'] . '</td>
+			</tr>
+			<tr style="background-color: #ccc; font-weight: bold;">
+				<td>Oportunidades</td>
+				<td>Ameaças</td>
+			</tr>
+			<tr>
+				<td>' . $infos['swot_oportunidades'] . '</td>
+				<td>' . $infos['swot_ameacas'] . '</td>
+			</tr>
+		</table>
+	<br/>
 </div>
-EOD;
+';
 
 $pdf->writeHTML($html,  true, false, true, false, '');
 $pdf->lastPage();

@@ -34,7 +34,7 @@ $app->get('/options', function() use ($app) {
 
 $app->get('/:page', function ($page) use ($app) {
 	$db = new DB();
-	if (in_array($page, array('missao', 'visao'))) {
+	if (in_array($page, array('missao', 'visao', 'objetivos', 'matriz'))) {
 		$app->render("$page.php", array('rows' => $db->loadInfos(INSTITUICAO_ID)));
 	}
 });

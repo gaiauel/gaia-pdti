@@ -3,10 +3,14 @@ $(document).ready(function(){
 
 	$('#save_content').click(function(){
 		$('.button_text').text('Carregando...');
-		var attr = $('#page').data('pagename');
+		var attrs = $('#page').data('pagename').split(',');
 		var value = $('.textarea').val();
 		var data = new Object();
-		data[attr] = value;
+		
+		for (i in attrs) {
+			data[attrs[i]] = $('#' + attrs[i]).val();
+		}
+
 		$.ajax({
 			url: base_url + 'update',
 			data: decodeURIComponent($.param(data)),
