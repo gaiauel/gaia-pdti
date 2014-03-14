@@ -28,13 +28,10 @@ $app->get('/update', function () use ($app) {
 	$db->update_attributes(INSTITUICAO_ID, $app->request->get());
 });
 
-$app->get('/options', function() use ($app) {
-	$app->render('options.php');
-});
 
 $app->get('/:page', function ($page) use ($app) {
 	$db = new DB();
-	if (in_array($page, array('missao', 'visao', 'objetivos', 'matriz'))) {
+	if (in_array($page, array('missao', 'visao', 'objetivos', 'matriz', 'options'))) {
 		$app->render("$page.php", array('rows' => $db->loadInfos(INSTITUICAO_ID)));
 	}
 });

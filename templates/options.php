@@ -1,6 +1,6 @@
 <?php include '_top.php'; ?>
 
-<input type="hidden" id="page" data-pagename="nome" />
+<input type="hidden" id="page" data-pagename="instituicao_nome" />
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <h1 class="page-header">Opções</h1>
@@ -9,7 +9,7 @@
       <span class="formFieldLabel">Nome da instituição</span>
     </div>
     <div class="col-md-6">
-      <input class="form-control" id="nome" required />
+      <input class="form-control" id="instituicao_nome" value="<?= $rows['instituicao_nome']; ?>" required />
     </div>
   </div>
 </div>
