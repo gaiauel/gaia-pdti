@@ -28,6 +28,8 @@
 require_once('lib/tcpdf/tcpdf.php');
 
 require_once 'database.php';
+$db = new DB;
+$infos = $db->loadInfos(1);
 
 //customizing the footer/header
 class MYPDF extends TCPDF {
@@ -95,17 +97,17 @@ $pdf->SetFont('dejavusans', '', 16);
 $pdf->AddPage();
 
 // set some text to print
-$html = <<<EOD
+$html = '
 <div style="text-align: center;">
 	<img src="relatorio/logo.jpg" style="width: 300px;" />
 	<br /><br /><br /><br />
 	<div>
-		<h1>Plano Diretor de Tecnologia da Informação da Prefeitura Municipal de</h1>
+		<h1>Plano Diretor de Tecnologia da Informação da Prefeitura Municipal de ' . $infos['instituicao_nome'] . '</h1>
 	</div>
 	<p>&nbsp;</p><p>&nbsp;</p>
 	<h3>LONDRINA - PR<br />2014</h3>
 </div>
-EOD;
+';
 
 $pdf->writeHTML($html,  true, false, true, false, '');
 $pdf->lastPage();
@@ -116,13 +118,14 @@ $pdf->lastPage();
 $pdf->AddPage();
 
 // set some text to print
-$html = <<<EOD
+$html = '
 <div style="text-align: center;">
 	<img src="relatorio/logo.jpg" style="width: 300px;" />
 	<br /><br /><br /><br />
 	<div>
-		<h1>Plano Diretor de Tecnologia da Informação da Prefeitura Municipal de</h1>
+		<h1>Plano Diretor de Tecnologia da Informação da Prefeitura Municipal de ' . $infos['instituicao_nome'] . '</h1>
 	</div>
+	<br/>
 	<table width="100%">
 		<tr>
 			<td width="35%"></td>
@@ -149,7 +152,7 @@ $html = <<<EOD
 	</table>
 	
 </div>
-EOD;
+';
 
 $pdf->writeHTML($html,  true, false, true, false, '');
 
@@ -169,8 +172,7 @@ $pdf->lastPage();
 
 // RELATÓRIO
 
-$db = new DB;
-$infos = $db->loadInfos(1);
+
 
 $pdf->setPrintHeader(true);
 
