@@ -28,7 +28,7 @@ class DB {
 		}
 		$sql = substr($sql, 0, -1);
 		$sql .= " WHERE instituicao_id = $id;";
-		echo $sql;
+		//echo $sql;
 		$stmt = $this->pdo->prepare($sql)->execute();
 		if (!$stmt) {
 			echo $stmt->errorInfo();
@@ -50,7 +50,8 @@ CREATE TABLE infos (
 	swot_pforte TEXT,
 	swot_pfraco TEXT,
 	swot_oportunidades TEXT,
-	swot_ameacas TEXT
+	swot_ameacas TEXT,
+	logo_url VARCHAR(255)
 );
 INSERT INTO "infos" VALUES(1,1,'Algum Município','missao da empresa','visao da empresa', 'objetivos', 'ponto forte',	'pontos fracos', 'oportunidades', 'ameacas');
 COMMIT;

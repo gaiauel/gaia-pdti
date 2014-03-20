@@ -50,7 +50,7 @@
             <li><a href="<?= link_to('matriz'); ?>">Matriz SWOT</a></li>
           </ul>
           <hr>
-          <a href="<?= resource('test_pdf.php'); ?>">
+          <a href="<?= resource('test_pdf.php'); ?>" target="blank">
             <button type="button" class="btn btn-danger btn-lg" style="position: absolute; bottom: 50px;">
               <span class="glyphicon glyphicon glyphicon-save"></span> Gerar PDF
             </button>

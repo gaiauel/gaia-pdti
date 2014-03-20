@@ -11,6 +11,17 @@
     <div class="col-md-6">
       <input class="form-control" id="instituicao_nome" value="<?= $rows['instituicao_nome']; ?>" required />
     </div>
+
+    <div class="col-md-6">
+      <span class="formFieldLabel">Logo</span>
+    </div>
+    <div class="col-md-6">
+      <img src="<?= $rows['logo_url']; ?>" style="width: 70px;" />
+      <form action="<?= link_to('options'); ?>" method="post" enctype="multipart/form-data">
+        <input type="file" name="logo" />
+        <input type="submit" value="Enviar imagem" />
+      </form>
+    </div>
   </div>
 </div>
 

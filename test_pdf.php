@@ -27,17 +27,20 @@
 // Include the main TCPDF library (search for installation path).
 require_once('lib/tcpdf/tcpdf.php');
 
+require_once 'utils.php';
 require_once 'database.php';
 $db = new DB;
 $infos = $db->loadInfos(1);
+
 
 //customizing the footer/header
 class MYPDF extends TCPDF {
 	//Page header
     public function Header() {
+    	global $infos;
         // Logo
-        $image_file = 'relatorio/logo.jpg';
-        $this->Image($image_file, 10, 10, 50, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+        $image_file = (string) $infos['logo_url'];
+        $this->Image('@' . Utils::getImageRaw($image_file), 10, 10, 50, '', 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
         // Set font
         $this->SetFont('helvetica', 'B', 20);
         // Title
@@ -91,7 +94,7 @@ if (@file_exists(dirname(__FILE__).'/lib/tcpdf/lang/eng.php')) {
 
 // set font
 // $pdf->SetFont('times', 'BI', 20);
-$pdf->SetFont('dejavusans', '', 16);
+$pdf->SetFont('dejavusans', '', 14);
 
 // add a page
 $pdf->AddPage();
@@ -99,13 +102,13 @@ $pdf->AddPage();
 // set some text to print
 $html = '
 <div style="text-align: center;">
-	<img src="relatorio/logo.jpg" style="width: 300px;" />
+	<img src="' . $infos['logo_url'] . '" style="width: 300px;" />
 	<br /><br /><br /><br />
 	<div>
 		<h1>Plano Diretor de Tecnologia da Informação da Prefeitura Municipal de ' . $infos['instituicao_nome'] . '</h1>
 	</div>
-	<p>&nbsp;</p><p>&nbsp;</p>
-	<h3>LONDRINA - PR<br />2014</h3>
+	<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+	<h4>LONDRINA - PR<br />2014</h4>
 </div>
 ';
 
@@ -120,17 +123,17 @@ $pdf->AddPage();
 // set some text to print
 $html = '
 <div style="text-align: center;">
-	<img src="relatorio/logo.jpg" style="width: 300px;" />
+	<img src="' . $infos['logo_url'] . '" style="width: 300px;" />
 	<br /><br /><br /><br />
 	<div>
 		<h1>Plano Diretor de Tecnologia da Informação da Prefeitura Municipal de ' . $infos['instituicao_nome'] . '</h1>
 	</div>
-	<br/>
+	<br/><p>&nbsp;</p>
 	<table width="100%">
 		<tr>
 			<td width="35%"></td>
 			<td width="65%">
-				<div style="text-align: left; font-size: 14pt; font-weight: bold;">
+				<div style="text-align: left; font-size: 12pt; font-weight: bold;">
 					<u>Equipe Técnica:</u><br/>
 					Prof. Dr. Bruno Bogaz Zarpelão<br/>
 					Prof. Dr. Rodolfo Miranda de Barros<br/>
@@ -140,7 +143,7 @@ $html = '
 		<tr>
 			<td width="35%"></td>
 			<td width="65%">
-				<div style="text-align: left; font-size: 14pt; font-weight: bold;">
+				<div style="text-align: left; font-size: 12pt; font-weight: bold;">
 					<u>Equipe Administrativa:</u><br/>
 					Graça Maria Simões Luz – Diretora Presidente<br />
 					Mário Luís Orsi – Diretor Vice-Presidente<br />
@@ -150,6 +153,8 @@ $html = '
 			</td>
 		</tr>
 	</table>
+	<p>&nbsp;</p>
+	<h4>LONDRINA - PR<br />2014</h4>
 	
 </div>
 ';
