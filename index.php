@@ -53,6 +53,7 @@ $app->post('/options', function () use ($app) {
 		//printf('<img height="180" src="%s" >', $reply->data->link);
 		$db = new DB();
 		$db->update_attributes(INSTITUICAO_ID, array('logo_url' => $reply->data->link));
+		$app->render("options.php", array('rows' => $db->loadInfos(INSTITUICAO_ID)));
 	}
 });
 
