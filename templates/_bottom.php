@@ -22,6 +22,10 @@
     <script src="<?= resource('public/js/bootstrap-wysihtml5.js'); ?>"></script>
     <script src="<?= resource('public/js/bootstrap3-wysihtml5.js'); ?>"></script>
     <script src="<?= resource('public/js/notify.min.js'); ?>"></script>
+    <script src="<?= resource('public/js/jquery-file-upload/vendor/jquery.ui.widget.js'); ?>"></script>
+    <script src="<?= resource('public/js/jquery-file-upload/jquery.iframe-transport.js'); ?>"></script>
+    <script src="<?= resource('public/js/jquery-file-upload/jquery.fileupload.js'); ?>"></script>
+    <script src="<?= resource('public/js/wysihtml5-image-upload.js'); ?>"></script>
     <script src="<?= resource('public/js/script.js'); ?>"></script>
   </body>
 </html>
